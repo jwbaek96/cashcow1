@@ -1,0 +1,6 @@
+# API keys and sensitive information
+important/
+
+# OS generated files
+.DS_Store
+Thumbs.db
