@@ -1,5 +1,5 @@
 // Google Apps Script Web App URL (배포 후 여기에 붙여넣으세요)
-const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzqon0c6GTXeYrwBOboP9Sm8pjgxHGUCrWI6BGVKqNfMvEGV2P2n0IguXteKV-GIx1y/exec";
+const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzWTAq-neKDO0d-xgP2H2WWk65SrKvszXyATwEb4U-_FfPD6L2qhg2SJLMgEk77ZW5J/exec";
 
 let currentLink = "";
 let userPassword = localStorage.getItem("appPassword") || "";
@@ -79,6 +79,7 @@ async function verifyLink() {
             document.getElementById('hookResult').value = existing.hook || "";
             document.getElementById('captionResult').value = existing.caption || "";
             document.getElementById('keywordResult').value = existing.keywords || "";
+            document.getElementById('dmKeywordResult').value = existing.dmKeyword || "";
             document.getElementById('resultBox').style.display = "block";
             
             await extractVideo(currentLink);
@@ -140,7 +141,7 @@ async function analyzeVideo() {
     try {
         const base64Video = await fileToBase64(videoFile);
         const prompt = `당신은 인스타그램 마케팅 전문가입니다. 
-제공된 영상을 분석하여 다음 형식으로 응답해 주세요(응답에 굵은 글씨는 포함하지 마세요):
+제공된 영상을 분석하여 다음 형식으로 응답해 주세요(응답에 굵은 글씨는 포함하지 마세요/형식을 반드시 지켜주세요):
 
 1. 후킹 문구: 시선을 사로잡는 강력한 핵심 문구 한 줄
 2. 인스타그램 캡션: 제품의 장점을 살린 매력적인 문구 (이모지, 해시태그(5개 이하) 포함)
@@ -170,10 +171,12 @@ DM으로 한 번 더 문의 부탁드려요ღ
             const hookMatch = text.match(/\[후킹\]:\s*(.*)/);
             const captionMatch = text.match(/\[캡션\]:\s*([\s\S]*?)(?=\[키워드\]|$)/);
             const keywordMatch = text.match(/\[키워드\]:\s*(.*)/);
+            const dmKeywordMatch = text.match(/\[DM키워드\]:\s*(.*)/);
 
             document.getElementById('hookResult').value = hookMatch ? hookMatch[1].trim() : "";
             document.getElementById('captionResult').value = captionMatch ? captionMatch[1].trim() : text;
             document.getElementById('keywordResult').value = keywordMatch ? keywordMatch[1].trim() : "추출 실패";
+            document.getElementById('dmKeywordResult').value = dmKeywordMatch ? dmKeywordMatch[1].trim() : "";
             
             resultBox.style.display = "block";
 
@@ -240,6 +243,7 @@ async function updateSheet() {
         hook: document.getElementById('hookResult').value,
         caption: document.getElementById('captionResult').value,
         keywords: document.getElementById('keywordResult').value,
+        dmKeyword: document.getElementById('dmKeywordResult').value,
         coupangUrl: document.getElementById('selectedCoupangUrl').value
     };
 
