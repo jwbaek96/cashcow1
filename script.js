@@ -1,5 +1,5 @@
 // Google Apps Script Web App URL (배포 후 여기에 붙여넣으세요)
-const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzWTAq-neKDO0d-xgP2H2WWk65SrKvszXyATwEb4U-_FfPD6L2qhg2SJLMgEk77ZW5J/exec";
+const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwHIxh1nGOGmRQ0AxxqFYia1lWBq3wUa0LVPyu-hEd9UvjaCMi4_SjIXBJ4raO6dqKb/exec";
 
 let currentLink = "";
 let userPassword = localStorage.getItem("appPassword") || "";
@@ -80,6 +80,8 @@ async function verifyLink() {
             document.getElementById('captionResult').value = existing.caption || "";
             document.getElementById('keywordResult').value = existing.keywords || "";
             document.getElementById('dmKeywordResult').value = existing.dmKeyword || "";
+            document.getElementById('selectedCoupangUrl').value = existing.coupangUrl || "";
+            document.getElementById('instaPostUrl').value = existing.instaPostUrl || "";
             document.getElementById('resultBox').style.display = "block";
             
             await extractVideo(currentLink);
@@ -244,7 +246,8 @@ async function updateSheet() {
         caption: document.getElementById('captionResult').value,
         keywords: document.getElementById('keywordResult').value,
         dmKeyword: document.getElementById('dmKeywordResult').value,
-        coupangUrl: document.getElementById('selectedCoupangUrl').value
+        coupangUrl: document.getElementById('selectedCoupangUrl').value,
+        instaPostUrl: document.getElementById('instaPostUrl').value
     };
 
     try {

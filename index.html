@@ -114,12 +114,24 @@
                 <div id="coupangList" class="list-group">
                     <!-- 검색된 상품들이 여기에 들어갑니다 -->
                 </div>
-                <div class="mt-2">
-                    <label class="form-label small">선택된 쿠팡 링크</label>
-                    <div class="input-group">
-                        <input type="text" id="selectedCoupangUrl" class="form-control form-control-sm" readonly>
-                        <button class="btn btn-sm btn-outline-secondary" onclick="copyText('selectedCoupangUrl')">복사</button>
-                    </div>
+                <div class="mt-2 text-muted small">💡 목록에서 선택하거나 아래에 직접 입력하세요.</div>
+            </div>
+
+            <!-- 쿠팡 파트너스 링크 직접 입력 가능하게 수정 -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">5. 쿠팡 파트너스 링크</label>
+                <div class="input-group">
+                    <input type="text" id="selectedCoupangUrl" class="form-control" placeholder="조회 후 선택하거나 직접 입력">
+                    <button class="btn btn-outline-primary" onclick="copyText('selectedCoupangUrl')">복사</button>
+                </div>
+            </div>
+
+            <!-- 인스타그램 게시물 링크 (추가) -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">6. 인스타그램 게시물 링크</label>
+                <div class="input-group">
+                    <input type="text" id="instaPostUrl" class="form-control" placeholder="업로드한 인스타 링크 입력">
+                    <button class="btn btn-outline-primary" onclick="copyText('instaPostUrl')">복사</button>
                 </div>
             </div>
 
