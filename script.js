@@ -149,13 +149,12 @@ async function analyzeVideo() {
 2. 인스타그램 캡션: 제품의 장점을 살린 매력적인 문구 (이모지, 해시태그(5개 이하) 포함)
 3. 상품 키워드: 영상 속 제품을 검색창에 검색시 해당 제품이 나올 수 있는 단어로 표현
 4. DM 키워드 : 잠재 고객이 DM으로 문의할 때 사용할 만한 띄어쓰기가 포함되지 않은 한 단어
-*5. 인스타그램 캡션에 아래 문구를 반드시 포함해 주세요: 
-"
-💌 댓글에 "[DM 키워드]" 남겨주시면 쇼핑 링크 즉시 발송드려요
-💌 팔로우 하고 보내주셔야 오류 없이 정상적으로 발송됩니다 :)
-📩 DM이 오지 않았을 경우 프로필 링크를 확인하시거나,
-DM으로 한 번 더 문의 부탁드려요ღ
-"
+*인스타그램 캡션에 아래 문구를 반드시 포함해 주세요: 
+"[광고] 댓글에 "[DM 키워드]" 남겨주세요!"로 시작
+
+해시태그 전에 아래 문구도 반드시 포함해 주세요:
+"📩 DM이 오지 않았을 경우 프로필 링크를 확인하시거나,
+DM으로 한 번 더 문의 부탁드려요! 😊"
 
 형식:
 [후킹]: (내용)
@@ -240,8 +239,17 @@ function selectCoupangProduct(url) {
 
 // 4. 시트 업데이트
 async function updateSheet() {
+    const linkInput = document.getElementById('tiktokLink');
+    const tiktokLink = currentLink || linkInput.value.trim();
+
+    if (!tiktokLink) {
+        alert("틱톡 링크를 입력해주세요. 시트 저장 시 필수 항목입니다.");
+        linkInput.focus();
+        return;
+    }
+
     const data = {
-        link: currentLink,
+        link: tiktokLink,
         hook: document.getElementById('hookResult').value,
         caption: document.getElementById('captionResult').value,
         keywords: document.getElementById('keywordResult').value,

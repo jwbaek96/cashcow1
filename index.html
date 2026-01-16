@@ -9,7 +9,7 @@
         body { padding: 20px; background-color: #f8f9fa; }
         .container { max-width: 600px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: none; }
         .login-container { max-width: 400px; margin-top: 100px; padding: 30px; background: white; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .result-box { margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 10px; display: none; }
+        .result-box { margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 10px; }
         #loading { display: none; }
     </style>
 </head>
@@ -59,7 +59,7 @@
 
         <!-- 3. AI 분석 -->
         <div class="d-grid gap-2">
-            <button id="analyzeBtn" class="btn btn-dark" onclick="analyzeVideo()" disabled>AI 분석 시작</button>
+            <button id="analyzeBtn" class="btn btn-dark" onclick="analyzeVideo()">AI 분석 시작</button>
         </div>
 
         <div id="loading" class="text-center mt-3">
