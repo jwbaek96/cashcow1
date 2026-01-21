@@ -1,7 +1,8 @@
 // Google Apps Script Web App URL (배포 후 여기에 붙여넣으세요)
-const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwHIxh1nGOGmRQ0AxxqFYia1lWBq3wUa0LVPyu-hEd9UvjaCMi4_SjIXBJ4raO6dqKb/exec";
+const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwsczlzmIE_j5t1T3qBIjciC-B-LIF6RLc4tQbGdOm_QOsrEbU8wV-OEd4vvxHuQMlh/exec";
 
 let currentLink = "";
+let extractedVideoUrl = ""; // 추출된 영상 CDN 주소 저장용
 let userPassword = localStorage.getItem("appPassword") || "";
 
 // 페이지 로드 시 로그인 상태 확인
@@ -110,6 +111,7 @@ async function extractVideo(link) {
 
         if (result.status === "success") {
             const videoData = result.data;
+            extractedVideoUrl = videoData.videoUrl; // 주소 보관
             videoCover.src = videoData.cover;
             videoTitle.innerText = videoData.title;
             downloadBtn.href = videoData.videoUrl;
@@ -255,7 +257,8 @@ async function updateSheet() {
         keywords: document.getElementById('keywordResult').value,
         dmKeyword: document.getElementById('dmKeywordResult').value,
         coupangUrl: document.getElementById('selectedCoupangUrl').value,
-        instaPostUrl: document.getElementById('instaPostUrl').value
+        instaPostUrl: document.getElementById('instaPostUrl').value,
+        videoUrl: extractedVideoUrl // 추가된 영상 URL
     };
 
     try {
