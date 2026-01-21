@@ -1,5 +1,5 @@
 // Google Apps Script Web App URL (배포 후 여기에 붙여넣으세요)
-const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwsczlzmIE_j5t1T3qBIjciC-B-LIF6RLc4tQbGdOm_QOsrEbU8wV-OEd4vvxHuQMlh/exec";
+const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyzAl2lRsRTJEWZkW7f0o92NX6d6ncJefElmmcu4-6nwdjrD37JZfx3DfVzCnw0t-Dh/exec";
 
 let currentLink = "";
 let extractedVideoUrl = ""; // 추출된 영상 CDN 주소 저장용
